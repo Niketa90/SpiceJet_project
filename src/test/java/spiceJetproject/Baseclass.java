@@ -34,6 +34,7 @@ public class Baseclass extends Utils {
 	}
 	             @AfterMethod
 	                public void closeup() {
+				driver.close();
 	            	
 	                 }
 	      

@@ -53,10 +53,11 @@ public class RoundTrip extends Baseclass {
 		  WebElement IndRupee;
 		  @FindBy (xpath="//div[@data-testid='home-page-flight-cta']")
 		  WebElement SearchFlights;
-	  
+	   @FindBy (xpath=" //div[@class='css-1dbjc4n r-1awozwy r-1xfd6ze r-1loqt21 r-18u37iz r-1777fci r-1w50u8q r-ah5dr5 r-1otgn73']")
+		  WebElement continue;
 	  
 
-	
+	      
 	
 	public RoundTrip(WebDriver driver) {
 		this.driver=driver;
@@ -182,7 +183,24 @@ public class RoundTrip extends Baseclass {
 		public void search(){
 			this.currency.click();
 			this.IndRupee.click();
+			//code for searching the flights for round trip 
 			 SearchFlights.click();
+			//clicks on continue to do final booking
+			this.continue.click();
+			//lands on booking form page
+		}
+		public void bookingForm(){
+			System.out.println("booking page"+ driver.getTitle());
+			//need to complete  this didnt get time to cover this 
+                     
+		
+		
+		
+		
+		
+		
+		
+		
 		}
 	 
 	  }

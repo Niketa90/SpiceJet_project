@@ -39,6 +39,20 @@ public class RoundTrip extends Baseclass {
 	  
 	  @FindBy (xpath="//div[@class='css-1dbjc4n r-1awozwy r-16ru68a r-1loqt21 r-eu3ka r-1otgn73 r-1aockid']//div[@class='css-76zvg2 r-homxoj r-ubezar r-16dba41'][normalize-space()='6']")
 	  WebElement ReturningDate;
+	 
+	
+	   @FindBy (xpath="//div[@data-testid='home-page-travellers']")
+		  WebElement Travellers;
+		  
+		  @FindBy (xpath="//div[@data-testid='Adult-testID-plus-one-cta']")
+		  WebElement Adultcount;
+	 @FindBy (xpath="//div[5]/div[2]/div[1]/div[@class='css-1dbjc4n r-1awozwy r-18u37iz r-1wtj0ep']")
+		  WebElement currency;
+		  
+		  @FindBy (xpath="//div[@class='css-1dbjc4n']//div//div[text()='INR']")
+		  WebElement IndRupee;
+		  @FindBy (xpath="//div[@data-testid='home-page-flight-cta']")
+		  WebElement SearchFlights;
 	  
 	  
 
@@ -68,17 +82,109 @@ public class RoundTrip extends Baseclass {
 		 this.Chennai.click();
 	}
 	public void dateOfDepart() {
+		
 		this.DepartDate.click();
+			 String expectedDate = "26-April-2023";
+			String emonth = expectedDate.split("-")[1];
+			String eyear = expectedDate.split("-")[2];
+			String edate = expectedDate.split("-")[0];
+			System.out.println(emonth+"***"+eyear+"***"+edate);
+		//	String DOD = edate+emonth+eyear;
+			 WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(3000));
+			  
+			 //filling depart date
+			  
+			  WebElement dateBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='css-1dbjc4n r-18u37iz']//div[@class='css-1dbjc4n r-14lw9ot r-11u4nky r-z2wwpe r-1phboty r-rs99b7 r-1loqt21 r-13awgt0 r-ymttw5 r-5njf8e r-1otgn73']//div[@class='css-1dbjc4n']//*[name()='svg']")));
+			  dateBtn.click();
+			  String cmonthandyear=driver.findElement(By.xpath("//div[@data-testid='undefined-month-April-2023']")).getText().trim();
+			 // String cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+			
+			  WebElement next;
+			  
+			  System.out.println("passed");
+			  while((!cmonthandyear.equals(emonth)) || (!cmonthandyear.equals(eyear))){
+				  next=driver.findElement(By.xpath("//div[2]/div[1]/*[name()='svg'][1]/*[name()='g'][1]/*[name()='circle'][1]"));
+				  System.out.println("selected");
+				  next.click();
+				  System.out.println("clicked");
+				  cmonthandyear=driver.findElement(By.xpath("//div[@data-testid='undefined-month-April-2023']")).getText().trim();
+				 // cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+				  System.out.println(cmonthandyear);
+				  
+				  
+				  		  
+			  }
+			  List<WebElement> dates = driver.findElements(By.xpath("//div[@class='css-1dbjc4n r-1awozwy r-18u37iz']"));
+				
+				for(WebElement e: dates) {
+					if(e.getText().trim().equals(edate)){
+						js.executeScript("arguments[0].click()",e)
+						e.click();
+						break;
+			  
+		}
 		this.DepartureDate.click();
 	}
 	public void Returndate() throws Exception {
 		WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(3000));
 		wait.until(ExpectedConditions.elementToBeClickable(ReturnDatecal));
-		this.ReturnDatecal.click();
+		 String expectedDate = "28-May-2023";
+			String emonth = expectedDate.split("-")[1];
+			String eyear = expectedDate.split("-")[2];
+			String edate = expectedDate.split("-")[0];
+			System.out.println(emonth+"***"+eyear+"***"+edate);
+		//	String DOD = edate+emonth+eyear;
+			 WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(3000));
+			  
+			 //filling returndate
+			  
+			  WebElement dateBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='css-1dbjc4n r-18u37iz']//div[@class='css-1dbjc4n r-14lw9ot r-11u4nky r-z2wwpe r-1phboty r-rs99b7 r-1loqt21 r-13awgt0 r-ymttw5 r-5njf8e r-1otgn73']//div[@class='css-1dbjc4n']//*[name()='svg']")));
+			  dateBtn.click();
+			  String cmonthandyear=driver.findElement(By.xpath("//div[@data-testid='undefined-month-May-2023']")).getText().trim();
+			
+			
+			  WebElement next;
+			  
+			  System.out.println("passed");
+			  while((!cmonthandyear.equals(emonth)) || (!cmonthandyear.equals(eyear))){
+				  next=driver.findElement(By.xpath("//div[2]/div[1]/*[name()='svg'][1]/*[name()='g'][1]/*[name()='circle'][1]"));
+				  System.out.println("selected");
+				  next.click();
+				  System.out.println("clicked");
+				  cmonthandyear=driver.findElement(By.xpath("//div[@data-testid='undefined-month-April-2023']")).getText().trim();
+				 // cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+				  System.out.println(cmonthandyear);
+				  
+				  
+				  		  
+			  }
+			  List<WebElement> dates = driver.findElements(By.xpath("//div[@class='css-1dbjc4n r-1awozwy r-18u37iz']"));
+				
+				for(WebElement e: dates) {
+					if(e.getText().trim().equals(edate)){
+						js.executeScript("arguments[0].click()",e)
+						e.click();
+						break;
+			  
+		}
+		 this.Travellers.click();
+			 Thread.sleep(3000);
+			 this.Adultcount.click();
+			 System.out.println("Adultcount");
+			// object.scrollToElement(Done).build().perform();
+			// wait.until(ExpectedConditions.visibilityOf(Done));
+			 
+			 this.Done.click();	
+	
 		Thread.sleep(3000);
-		this.ReturningDate.click();
 		
-		
-		 
+				}
+		public void search(){
+			this.currency.click();
+			this.IndRupee.click();
+			 SearchFlights.click();
+		}
+	 
 	  }
+				 
 }

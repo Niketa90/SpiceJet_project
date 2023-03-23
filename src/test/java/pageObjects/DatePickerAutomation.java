@@ -32,28 +32,43 @@ public class DatePickerAutomation extends Baseclass{
 	
 	
 	{
-		String expectedDate = "26-December-2023";
+	  String expectedDate = "26-December-2023";
 		String emonth = expectedDate.split("-")[1];
 		String eyear = expectedDate.split("-")[2];
 		String edate = expectedDate.split("-")[0];
 		System.out.println(emonth+"***"+eyear+"***"+edate);
 		 WebDriverWait wait=new WebDriverWait(driver,Duration.ofMillis(3000));
-		  ChromeOptions options = new ChromeOptions();
-		  options.addArguments("--remote-allow-origins=*");
-		 
+		  
+		 //filling depart date
 		  
 		  WebElement dateBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='css-1dbjc4n r-18u37iz']//div[@class='css-1dbjc4n r-14lw9ot r-11u4nky r-z2wwpe r-1phboty r-rs99b7 r-1loqt21 r-13awgt0 r-ymttw5 r-5njf8e r-1otgn73']//div[@class='css-1dbjc4n']//*[name()='svg']")));
 		  dateBtn.click();
-		  String cmonth=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
-		  String cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+		  String cmonthandyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+		 // String cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+		
 		  WebElement next;
 		  
-		  while((!cmonth.equals(emonth)) || (!cyear.equals(eyear))){
-			  next=driver.findElement(By.xpath("//div[@class='r-1loqt21 r-u8s1d r-11xbo3g r-1v2oles r-1otgn73 r-16zfatd r-1i6wzkk r-lrvibr r-184en5c css-1dbjc4n']//*[name()='svg']//*[name()='g' and contains(@fill,'none')]//*[name()='circle' and contains(@cx,'24.5')]"));
+		  System.out.println("passed");
+		  while((!cmonthandyear.equals(emonth)) || (!cmonthandyear.equals(eyear))){
+			  next=driver.findElement(By.xpath("//div[2]/div[1]/*[name()='svg'][1]/*[name()='g'][1]/*[name()='circle'][1]"));
+			  System.out.println("selected");
 			  next.click();
-			  cmonth=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
-			  cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+			  System.out.println("clicked");
+			  cmonthandyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+			 // cyear=driver.findElement(By.xpath("//div[@class='css-76zvg2 r-homxoj r-adyw6z r-1kfrs79'][normalize-space()='March 2023'][1]")).getText().trim();
+			  System.out.println(cmonthandyear);
+			  
+			  
+			  		  
 		  }
+		  List<WebElement> dates = driver.findElements(By.xpath("//a[@class='ui-state-default']"));
+			
+			for(WebElement e: dates) {
+				if(e.getText().trim().equals(edate)){
+					e.click();
+					break;
+		  
+	}
 	}
 	}
 }
